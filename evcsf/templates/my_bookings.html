@@ -1,0 +1,20 @@
+{% load static %} {% load cache %}
+<!-- my_bookings.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Bookings</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="{% static 'js/scripts.js' %}"></script>
+</head>
+<body>
+    <h1>My Bookings</h1>
+    <ul>
+        {% for booking in bookings %}
+            <li>{{ booking.charging_slot.charging_station.name }} - {{ booking.start_time }} to {{ booking.end_time }}</li>
+        {% empty %}
+            <li>No bookings found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

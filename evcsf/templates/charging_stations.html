@@ -1,0 +1,20 @@
+{% load static %} {% load cache %}
+<!-- charging_stations.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Charging Stations</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="{% static 'js/scripts.js' %}"></script>
+</head>
+<body>
+    <h1>Charging Stations</h1>
+    <ul>
+        {% for station in stations %}
+            <li>{{ station.name }} - {{ station.address }}</li>
+        {% empty %}
+            <li>No charging stations available.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

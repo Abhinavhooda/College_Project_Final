@@ -1,0 +1,68 @@
+{% extends 'base/base.html' %} 
+{% load static %} {% load cache %}
+{% block title %} Signup | EVCSF {% endblock title %}
+{% block body %}    
+<div class="login-wrapper">
+    <div class="loginbox">
+       <div class="login-auth">
+          <div class="login-auth-wrap">
+             <h1>Sign Up</h1>
+             <form method="post" action=".">
+                {% csrf_token %}
+                <div class="form-group">
+                   <label class="form-label">Username <span class="text-danger">*</span></label>
+                   <input type="text" name="username" class="form-control" placeholder>
+                </div>
+                <div class="form-group">
+                   <label class="form-label">Email <span class="text-danger">*</span></label>
+                   <input type="email" name="email" class="form-control" placeholder>
+                </div>
+                <div class="form-group">
+                   <label class="form-label">Password <span class="text-danger">*</span></label>
+                   <div class="pass-group">
+                      <input type="password" name="password1" class="form-control pass-input" placeholder>
+                      <span class="fas fa-eye toggle-password"></span>
+                   </div>
+                </div>
+                <div class="form-group">
+                   <label class="form-label">Repeat Password <span class="text-danger">*</span></label>
+                   <div class="pass-group">
+                      <input type="password" name="password2" class="form-control pass-input" placeholder>
+                      <span class="fas fa-eye toggle-password"></span>
+                   </div>
+                </div>
+                <div class="form-group">
+                   <label class="form-label">First Name <span class="text-danger">*</span></label>
+                   <div class="pass-group">
+                      <input type="text" name="first_name" class="form-control pass-input" placeholder>
+                   </div>
+                </div>
+                <div class="form-group">
+                   <label class="form-label">Last Name  <span class="text-danger">*</span></label>
+                   <div class="pass-group">
+                      <input type="text" name="last_name" class="form-control pass-input" placeholder>
+                   </div>
+                </div>
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="p-6 bg-red-200 text-red-800 rounded-xl">
+                                <p>{{ error|escape }}</p>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+
+                    {% for error in form.non_field_errors %}
+                        <div class="p-6 bg-red-200 text-red-800 rounded-xl">
+                            <p>{{ error|escape }}</p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <input class="btn btn-outline-light w-100 btn-size mt-1" type="submit" value="Sign up">
+                <div class="text-center dont-have">Already have an Account? <a href="{% url 'login' %}">Sign In</a></div>
+             </form>
+          </div>
+       </div>
+    </div>
+ </div>
+{% endblock body %}

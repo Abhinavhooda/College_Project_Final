@@ -1,0 +1,19 @@
+{% load static %} {% load cache %}
+<!-- booking.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="{% static 'js/scripts.js' %}"></script>
+</head>
+<body>
+    <h1>Book a Charging Slot</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>Start Time: <input type="datetime-local" name="start_time"></p>
+        <p>End Time: <input type="datetime-local" name="end_time"></p>
+        <input type="submit" value="Book">
+    </form>
+</body>
+</html>
